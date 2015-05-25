@@ -1,0 +1,16 @@
+// Fonts mixin
+font-url(file)
+  return '~_fonts/' + file
+  
+webfont(family, folder, file, weight = 'normal')
+  @font-face
+    font-family family
+    src url(font-url(folder + '/' + file + '.eot'))
+    src url(font-url(folder + '/' + file + '.eot?#iefix')) format('embedded-opentype'),
+        url(font-url(folder + '/' + file + '.woff2')) format('woff2'),
+        url(font-url(folder + '/' + file + '.woff')) format('woff'), 
+        url(font-url(folder + '/' + file + '.ttf')) format('truetype'), 
+        url(font-url(folder + '/' + file + '.svg#'+ family)) format('svg')
+    font-weight weight
+    font-style normal
+    

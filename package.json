@@ -1,0 +1,36 @@
+{
+  "name": "rambler-webpack-boilerplate",
+  "version": "0.0.1",
+  "description": "Use it for simple and fast web development",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=development webpack-dev-server --progress",
+    "build": "rm -rf dist/* && NODE_ENV=production webpack -p --colors"
+  },
+  "devDependencies": {
+    "css-loader": "^0.12.0",
+    "extract-text-webpack-plugin": "^0.7.0",
+    "file-loader": "^0.8.1",
+    "jade-loader": "^0.7.1",
+    "json-loader": "^0.5.1",
+    "lodash": "^3.7.0",
+    "manifest-revision-webpack-plugin": "0.0.2",
+    "html-webpack-plugin": "^1.3.0",
+    "path": "^0.11.14",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.12.1",
+    "stylus-loader": "^1.1.1",
+    "url-loader": "^0.5.5",
+    "webpack": "^1.8.11",
+    "webpack-dev-server": "^1.8.2"
+  },
+  "author": "Michael Chernobrov <m.chernobrov@rambler-co.ru> (http://rambler-co.ru)",
+  "license": "MIT",
+  "dependencies": {
+    "backbone": "^1.2.0",
+    "fullpage.js": "^2.6.5",
+    "jquery": "^2.1.4",
+    "underscore": "^1.8.3"
+  }
+}

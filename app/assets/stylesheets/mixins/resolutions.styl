@@ -1,0 +1,27 @@
+// Adaptive query
+
+$media_cache = {}
+$media_aliases = {
+  phone:          '(min-width: 0px) and (max-width: 820px)'
+  desktop:        '(min-width: 820px) and (max-width: 1400px)'
+  widescreen:    '(min-width: 1401px)'
+}
+
+media($condition)
+  helper($condition)
+    unless $media_cache[$condition]
+      $media_cache[$condition] = ()
+    push($media_cache[$condition], block)
+
+  +helper($condition)
+    {selector() + ''}
+      {block}
+
+apply_media_cache()
+  for $media, $blocks in $media_cache
+    $media = unquote($media_aliases[$media] || $media)
+    $media = '(%s)' % $media unless match('\(', $media)
+    $media = 'only screen and %s' % $media
+    @media $media
+      for $block in $blocks
+        {$block}
