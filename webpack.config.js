@@ -46,8 +46,8 @@ var _load = function(enviroment) {
 
   //load config file by enviroment
   return _configs && _.merge(
-    _configs[enviroment](__dirname),
-    _configs['global'](__dirname)
+    _configs['global'](__dirname),
+    _configs[enviroment](__dirname)
   );
 }
 
