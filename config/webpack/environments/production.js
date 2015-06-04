@@ -11,7 +11,7 @@ module.exports = function(_path) {
     debug: false,
     devtool: 'cheap-source-map',
     output: {
-      publicPath: './'
+      publicPath: '/rambler-webpack-boilerplate/'
     }
   }
 }
