@@ -40,20 +40,20 @@ module.exports = function(_path) {
       extensions: ['', '.js'],
       modulesDirectories: ['node_modules'],
       alias: {
-        _data: path.join(_path, 'app', 'data'),
-        _modules: path.join(_path, 'app', 'modules'),
-        _images: path.join(_path, 'app', 'assets', 'images'),
+        _svg:         path.join(_path, 'app', 'assets', 'svg'),
+        _data:        path.join(_path, 'app', 'data'),
+        _fonts:       path.join(_path, 'app', 'assets', 'fonts'),
+        _modules:     path.join(_path, 'app', 'modules'),
+        _images:      path.join(_path, 'app', 'assets', 'images'),
         _stylesheets: path.join(_path, 'app', 'assets', 'stylesheets'),
-        _templates: path.join(_path, 'app', 'assets', 'templates'),
-        _svg: path.join(_path, 'app', 'assets', 'svg'),
-        _fonts: path.join(_path, 'app', 'assets', 'fonts')
+        _templates:   path.join(_path, 'app', 'assets', 'templates')
       }
     },
     module: {
       loaders: [
         { test: /\.jade$/, loader: 'jade-loader' },
         { test: /\.(css|ttf|eot|woff|woff2|png|ico|jpg|jpeg|gif|svg)$/i, loaders: ['file?context=' + rootAssetPath + '&name=assets/static/[ext]/[name].[hash].[ext]'] },
-        { test: /\.styl$/, loader: TextPlugin.extract('style-loader', 'css-loader!stylus-loader') }
+        { test: /\.styl$/, loader: TextPlugin.extract('style-loader', 'css-loader!autoprefixer-loader?browsers=last 5 version!stylus-loader') }
       ]
     },
 
@@ -64,7 +64,6 @@ module.exports = function(_path) {
       new Manifest(path.join(_path + '/config', 'manifest.json'), {
         rootAssetPath: rootAssetPath
       }),
-
       //create instance for entrypoint index.html building
       new HtmlPlugin({
         title: 'Rambler Webpack Dev Boilerplate',
