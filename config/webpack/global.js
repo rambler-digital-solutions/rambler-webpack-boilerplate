@@ -1,11 +1,12 @@
 'use strict'
 
 //Depends
-var path        = require('path');
-var webpack     = require('webpack');
-var Manifest    = require('manifest-revision-webpack-plugin');
-var TextPlugin  = require('extract-text-webpack-plugin');
-var HtmlPlugin    = require('html-webpack-plugin');
+var path         = require('path');
+var webpack      = require('webpack');
+var Manifest     = require('manifest-revision-webpack-plugin');
+var TextPlugin   = require('extract-text-webpack-plugin');
+var autoprefixer = require('autoprefixer-core');
+var HtmlPlugin   = require('html-webpack-plugin');
 
 /**
  * Global webpack config
@@ -53,9 +54,12 @@ module.exports = function(_path) {
       loaders: [
         { test: /\.jade$/, loader: 'jade-loader' },
         { test: /\.(css|ttf|eot|woff|woff2|png|ico|jpg|jpeg|gif|svg)$/i, loaders: ['file?context=' + rootAssetPath + '&name=assets/static/[ext]/[name].[hash].[ext]'] },
-        { test: /\.styl$/, loader: TextPlugin.extract('style-loader', 'css-loader!autoprefixer-loader?browsers=last 5 version!stylus-loader') }
+        { test: /\.styl$/, loader: TextPlugin.extract('style-loader', 'css-loader!postcss-loader!stylus-loader') }
       ]
     },
+
+    //post css
+    postcss: [autoprefixer({ browsers: ['last 5 versions'] })],
 
     //load plugins
     plugins: [
