@@ -6,7 +6,6 @@
  * @return {Object}       Object of development settings
  */
 module.exports = function(_path) {
-
   return {
     context: _path,
     debug: true,

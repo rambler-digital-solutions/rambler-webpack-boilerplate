@@ -1,9 +1,9 @@
 'use strict';
 
-//Apply styles for this module
+// Apply styles for this module
 require('./stylesheets/index.styl');
 
-//Depends
+// Depends
 var _           = require('underscore');
 var Backbone    = require('backbone');
 var Collection  = require('./collections/messages');

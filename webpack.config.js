@@ -20,7 +20,7 @@
 var _ = require('lodash');
 
 /**
- * [config description]
+ * Exported evnironments object
  * @type {Object}
  */
 var _configs = {
@@ -38,16 +38,16 @@ var _configs = {
  * @param  {[type]} enviroment [description]
  * @return {[type]}            [description]
  */
-var _load = function(enviroment) {
+var _load = function(environment) {
 
   //check enviroment
-  if (!enviroment) throw 'Can\'t find local enviroment variable via process.env.NODE_ENV';
-  if (!_configs[enviroment]) throw 'Can\'t find enviroments see _congigs object';
+  if (!environment) throw 'Can\'t find local environment variable via process.env.NODE_ENV';
+  if (!_configs[environment]) throw 'Can\'t find enviroments see _congigs object';
 
-  //load config file by enviroment
+  //load config file by environment
   return _configs && _.merge(
     _configs['global'](__dirname),
-    _configs[enviroment](__dirname)
+    _configs[environment](__dirname)
   );
 }
 

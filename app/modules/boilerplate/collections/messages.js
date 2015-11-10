@@ -1,6 +1,6 @@
 'use strict';
 
-//Depends
+// Depends
 var _        = require('underscore');
 var Backbone = require('backbone');
 var Model    = require('../models/message');
@@ -12,4 +12,4 @@ var Model    = require('../models/message');
 module.exports = Backbone.Collection.extend({
   url: '/app/data/example.json',
   model: Model
-})
+});

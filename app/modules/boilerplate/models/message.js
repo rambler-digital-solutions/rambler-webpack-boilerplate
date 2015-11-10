@@ -1,6 +1,6 @@
 'use strict';
 
-//Depends
+// Depends
 var _        = require('underscore');
 var Backbone = require('backbone');
 
@@ -12,4 +12,4 @@ module.exports = Backbone.Model.extend({
   defaults: {
     message: 'Hello bud! ^^'
   }
-})
+});

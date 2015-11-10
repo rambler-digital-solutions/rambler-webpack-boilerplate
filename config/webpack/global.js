@@ -1,6 +1,6 @@
 'use strict'
 
-//Depends
+// Depends
 var path         = require('path');
 var webpack      = require('webpack');
 var Manifest     = require('manifest-revision-webpack-plugin');
@@ -14,21 +14,18 @@ var HtmlPlugin   = require('html-webpack-plugin');
  * @return {[type]}       [description]
  */
 module.exports = function(_path) {
-
-  //define local variables
+  // define local variables
   var dependencies  = Object.keys(require(_path + '/package').dependencies);
   var rootAssetPath = _path + 'app';
-
-  //return objecy
+  // return objecy
   return {
-
-    //entry points
+    // entry points
     entry: {
       application: _path + '/app/app.js',
       vendors: dependencies
     },
 
-    //output system
+    // output system
     output: {
       path: path.join(_path, 'dist'),
       filename: path.join('assets', 'js', '[name].bundle.[chunkhash].js'),
@@ -36,7 +33,7 @@ module.exports = function(_path) {
       publicPath: '/'
     },
 
-    //resolves modules
+    // resolves modules
     resolve: {
       extensions: ['', '.js'],
       modulesDirectories: ['node_modules'],
@@ -58,17 +55,17 @@ module.exports = function(_path) {
       ]
     },
 
-    //post css
+    // post css
     postcss: [autoprefixer({ browsers: ['last 5 versions'] })],
 
-    //load plugins
+    // load plugins
     plugins: [
       new webpack.optimize.CommonsChunkPlugin('vendors', 'assets/js/vendors.[chunkhash].js'),
       new TextPlugin('assets/css/[name].[chunkhash].css'),
       new Manifest(path.join(_path + '/config', 'manifest.json'), {
         rootAssetPath: rootAssetPath
       }),
-      //create instance for entrypoint index.html building
+      // create instance for entrypoint index.html building
       new HtmlPlugin({
         title: 'Rambler Webpack Dev Boilerplate',
         chunks: ['application', 'vendors'],
