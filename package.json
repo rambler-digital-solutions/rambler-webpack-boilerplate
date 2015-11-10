@@ -25,9 +25,14 @@
     "stylus-loader": "^1.1.1",
     "url-loader": "^0.5.5",
     "webpack": "^1.8.11",
-    "webpack-dev-server": "^1.8.2"
+    "webpack-dev-server": "^1.8.2",
+    "eslint-config-rambler": "git://github.com/rambler-digital-solutions/dotfiles.git"
   },
-  "author": "Michael Chernobrov <m.chernobrov@rambler-co.ru> (http://rambler-co.ru)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rambler-digital-solutions/rambler-webpack-boilerplate"
+  },
+  "author": "Mike Chernobrov <m.chernobrov@rambler-co.ru> (http://rambler-co.ru)",
   "license": "MIT",
   "dependencies": {
     "backbone": "^1.2.0",

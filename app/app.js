@@ -7,7 +7,7 @@ require('_stylesheets/app.styl');
 // Depends
 var $ = require('jquery');
 
-// Modules
+//Modules
 var Boilerplate = require('_modules/boilerplate');
 
 // Are you ready?

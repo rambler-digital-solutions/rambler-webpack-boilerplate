@@ -1,5 +1,0 @@
-{
-  "preset": "airbnb",
-  "esnext": true,
-  "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties"   
-}
