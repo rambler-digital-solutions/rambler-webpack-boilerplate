@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 // Depends
 var path         = require('path');
@@ -47,11 +47,13 @@ module.exports = function(_path) {
         _templates:   path.join(_path, 'app', 'assets', 'templates')
       }
     },
+
+    // modules resolvers
     module: {
       loaders: [
         { test: /\.jade$/, loader: 'jade-loader' },
+        { test: /\.styl$/, loader: TextPlugin.extract('style-loader', 'css-loader!postcss-loader!stylus-loader') },
         { test: /\.(css|ttf|eot|woff|woff2|png|ico|jpg|jpeg|gif|svg)$/i, loaders: ['file?context=' + rootAssetPath + '&name=assets/static/[ext]/[name].[hash].[ext]'] },
-        { test: /\.styl$/, loader: TextPlugin.extract('style-loader', 'css-loader!postcss-loader!stylus-loader') }
       ]
     },
 
@@ -63,7 +65,8 @@ module.exports = function(_path) {
       new webpack.optimize.CommonsChunkPlugin('vendors', 'assets/js/vendors.[chunkhash].js'),
       new TextPlugin('assets/css/[name].[chunkhash].css'),
       new Manifest(path.join(_path + '/config', 'manifest.json'), {
-        rootAssetPath: rootAssetPath
+        rootAssetPath: rootAssetPath,
+        ignorePaths: ['.DS_Store']
       }),
       // create instance for entrypoint index.html building
       new HtmlPlugin({
@@ -73,5 +76,5 @@ module.exports = function(_path) {
         template: path.join(_path, 'app', 'assets', 'templates', 'layouts', 'index.html')
       })
     ]
-  }
+  };
 };
