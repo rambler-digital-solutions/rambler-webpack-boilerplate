@@ -65,7 +65,8 @@ module.exports = function(_path) {
       new webpack.optimize.CommonsChunkPlugin('vendors', 'assets/js/vendors.[chunkhash].js'),
       new TextPlugin('assets/css/[name].[chunkhash].css'),
       new Manifest(path.join(_path + '/config', 'manifest.json'), {
-        rootAssetPath: rootAssetPath
+        rootAssetPath: rootAssetPath,
+        ignorePaths: ['.DS_Store']
       }),
       // create instance for entrypoint index.html building
       new HtmlPlugin({
