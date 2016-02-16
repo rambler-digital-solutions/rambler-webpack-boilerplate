@@ -35,28 +35,14 @@ var _configs = {
 };
 
 /**
- * Compilation error
- * @param  {[type]} message [description]
- * @return {[type]}         [description]
- */
-var error = function(message) {
-  throw new Error(message);
-};
-
-
-/**
  * Load webpack config via enviroments
  * @param  {[type]} enviroment [description]
  * @return {[type]}            [description]
  */
 var _load = function() {
-  var ENV = process.env.NODE_ENV 
+  var ENV = process.env.NODE_ENV
     ? process.env.NODE_ENV
     : 'production';
-
-  !_configs[ENV]
-    ? error('Can\'t find enviroments. See _configs object')
-    : null;
 
   // load config file by environment
   return _configs && _.merge(
