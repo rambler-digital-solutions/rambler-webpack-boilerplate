@@ -1,7 +1,6 @@
 'use strict';
 
 // Depends
-var _        = require('underscore');
 var Backbone = require('backbone');
 var Model    = require('../models/message');
 

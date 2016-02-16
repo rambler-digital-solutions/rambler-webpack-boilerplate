@@ -16,7 +16,7 @@
  *  @see    http://rambler-co.ru
  */
 
-//Depends
+// Depends
 var _ = require('lodash');
 
 /**
@@ -25,34 +25,48 @@ var _ = require('lodash');
  */
 var _configs = {
 
-  //global section
+  // global section
   global: require(__dirname + '/config/webpack/global'),
 
-  //config by enviroments
+  // config by enviroments
   production: require(__dirname + '/config/webpack/environments/production'),
-  development: require(__dirname + '/config/webpack/environments/development')
+  development: require(__dirname + '/config/webpack/environments/development'),
+  testing: require(__dirname + '/config/webpack/environments/testing')
 };
+
+/**
+ * Compilation error
+ * @param  {[type]} message [description]
+ * @return {[type]}         [description]
+ */
+var error = function(message) {
+  throw new Error(message);
+};
+
 
 /**
  * Load webpack config via enviroments
  * @param  {[type]} enviroment [description]
  * @return {[type]}            [description]
  */
-var _load = function(environment) {
+var _load = function() {
+  var ENV = process.env.NODE_ENV 
+    ? process.env.NODE_ENV
+    : 'production';
 
-  //check enviroment
-  if (!environment) throw 'Can\'t find local environment variable via process.env.NODE_ENV';
-  if (!_configs[environment]) throw 'Can\'t find enviroments see _congigs object';
+  !_configs[ENV]
+    ? error('Can\'t find enviroments. See _configs object')
+    : null;
 
-  //load config file by environment
+  // load config file by environment
   return _configs && _.merge(
-    _configs['global'](__dirname),
-    _configs[environment](__dirname)
+    _configs.global(__dirname),
+    _configs[ENV](__dirname)
   );
-}
+};
 
 /**
  * Export WebPack config
  * @type {[type]}
  */
-module.exports = _load(process.env.NODE_ENV);
+module.exports = _load();

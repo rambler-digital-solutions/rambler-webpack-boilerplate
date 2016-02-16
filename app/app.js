@@ -1,14 +1,14 @@
 // God save the Dev
 'use strict';
 
-// Stylesheet entrypoint
-require('_stylesheets/app.styl');
-
 // Depends
 var $ = require('jquery');
 
-//Modules
+// Modules
 var Boilerplate = require('_modules/boilerplate');
+
+// Stylesheet entrypoint
+require('_stylesheets/app.styl');
 
 // Are you ready?
 $(function() {
