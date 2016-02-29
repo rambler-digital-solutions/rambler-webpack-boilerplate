@@ -36,7 +36,7 @@ module.exports = function(_path) {
         },
         {
           test: /\.js?$/,
-          include: /app\/assets\/javascripts\/core/,
+          include: /app/,
           exclude: /(node_modules|__tests__)/,
           loader: 'babel-istanbul',
           query: {
