@@ -38,13 +38,12 @@ module.exports = function(_path) {
       extensions: ['', '.js'],
       modulesDirectories: ['node_modules'],
       alias: {
-        _svg:         path.join(_path, 'app', 'assets', 'svg'),
-        _data:        path.join(_path, 'app', 'data'),
-        _fonts:       path.join(_path, 'app', 'assets', 'fonts'),
-        _modules:     path.join(_path, 'app', 'modules'),
-        _images:      path.join(_path, 'app', 'assets', 'images'),
+        _svg: path.join(_path, 'app', 'assets', 'svg'),
+        _fonts: path.join(_path, 'app', 'assets', 'fonts'),
+        _modules: path.join(_path, 'app', 'modules'),
+        _images: path.join(_path, 'app', 'assets', 'images'),
         _stylesheets: path.join(_path, 'app', 'assets', 'stylesheets'),
-        _templates:   path.join(_path, 'app', 'assets', 'templates')
+        _templates: path.join(_path, 'app', 'assets', 'templates')
       }
     },
 
