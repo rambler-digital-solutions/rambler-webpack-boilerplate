@@ -28,7 +28,7 @@ module.exports = function(_path) {
     // output system
     output: {
       path: path.join(_path, 'dist'),
-      filename: path.join('assets', 'js', '[name].bundle.[chunkhash].js'),
+      filename: path.join('assets', 'js', '[name].[hash].js'),
       chunkFilename: '[id].bundle.[chunkhash].js',
       publicPath: '/'
     },
@@ -61,7 +61,7 @@ module.exports = function(_path) {
 
     // load plugins
     plugins: [
-      new webpack.optimize.CommonsChunkPlugin('vendors', 'assets/js/vendors.[chunkhash].js'),
+      new webpack.optimize.CommonsChunkPlugin('vendors', 'assets/js/vendors.[hash].js'),
       new TextPlugin('assets/css/[name].[chunkhash].css'),
       new Manifest(path.join(_path + '/config', 'manifest.json'), {
         rootAssetPath: rootAssetPath,

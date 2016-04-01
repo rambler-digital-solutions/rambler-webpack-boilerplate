@@ -16,5 +16,5 @@ module.exports = function(_path) {
       hot: false,
       inline: true
     }
-  }
+  };
 };

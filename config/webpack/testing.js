@@ -9,6 +9,13 @@ module.exports = function(_path) {
   return {
     cache: true,
     devtool: 'inline-source-map',
+    output: {
+      path: path.join(_path, 'testing'),
+      filename: '[name].js',
+      chunkFilename: '[id].bundle.[chunkhash].js',
+      publicPath: '/'
+    },
+
     // resolves modules
     resolve: {
       extensions: ['', '.js', '.jsx'],
@@ -34,15 +41,15 @@ module.exports = function(_path) {
             cacheDirectory: true,
           }
         },
-        {
-          test: /\.js?$/,
-          include: /app/,
-          exclude: /(node_modules|__tests__)/,
-          loader: 'babel-istanbul',
-          query: {
-            cacheDirectory: true,
-          },
-        },
+        // {
+        //   test: /\.js?$/,
+        //   include: /app/,
+        //   exclude: /(node_modules|__tests__)/,
+        //   loader: 'babel-istanbul',
+        //   query: {
+        //     cacheDirectory: true,
+        //   },
+        // },
       ],
       loaders: [
         // es6 loader
@@ -80,7 +87,8 @@ module.exports = function(_path) {
       ],
     },
     plugins: [
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      new webpack.optimize.CommonsChunkPlugin('vendors', '_vendors.js'),
     ]
   };
 };

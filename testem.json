@@ -1,0 +1,18 @@
+{
+  "framework": "mocha",
+  "src_files": [
+    "app/**/*.js",
+    "app/**/__tests__/*.spec.js"
+  ],
+  "before_tests": "npm run build-test",
+  "after_tests": "rm -rf tetsting/",
+  "serve_files": [
+    "testing/*.js"
+  ],
+  "launch_in_dev": [
+    "phantomjs"
+  ],
+  "launch_in_ci": [
+    "phantomjs"
+  ]
+}

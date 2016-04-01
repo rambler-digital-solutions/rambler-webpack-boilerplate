@@ -2,6 +2,7 @@
 
 const $ = require('jquery');
 const Module = require('_modules/boilerplate');
+const expect = require('chai').expect;
 
 describe('App.modules.boilerplate', function() {
   let $el = $('<div>', { class: 'test-div' });

@@ -30,8 +30,7 @@ var _configs = {
 
   // config by enviroments
   production: require(__dirname + '/config/webpack/environments/production'),
-  development: require(__dirname + '/config/webpack/environments/development'),
-  testing: require(__dirname + '/config/webpack/environments/testing')
+  development: require(__dirname + '/config/webpack/environments/development')
 };
 
 /**
@@ -44,10 +43,9 @@ var _load = function() {
     ? process.env.NODE_ENV
     : 'production';
 
-  // load config file by environment
-  return _configs && _.merge(
-    _configs.global(__dirname),
-    _configs[ENV](__dirname)
+  return _.merge(
+    _configs[ENV](__dirname),
+    _configs.global(__dirname)
   );
 };
 
