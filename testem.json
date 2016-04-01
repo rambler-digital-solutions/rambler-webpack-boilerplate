@@ -5,7 +5,7 @@
     "app/**/__tests__/*.spec.js"
   ],
   "before_tests": "npm run build-test",
-  "after_tests": "rm -rf tetsting/",
+  "after_tests": "rm -rf testing/",
   "serve_files": [
     "testing/*.js"
   ],
