@@ -7,8 +7,8 @@
     "dev": "NODE_ENV=development webpack-dev-server --progress --port 8090",
     "build": "rm -rf dist/* && NODE_ENV=production webpack -p --colors",
     "build-test": "node .bin/build-test",
-    "test": "testem",
-    "test-ci": "testem ci"
+    "test": "NODE_ENV=tdd npm run build-test",
+    "test-ci": "NODE_ENV=test-ci testem ci"
   },
   "devDependencies": {
     "autoprefixer-core": "5.2.1",
@@ -30,6 +30,7 @@
     "lodash": "^3.7.0",
     "manifest-revision-webpack-plugin": "^0.1.0",
     "mocha": "^2.4.5",
+    "npmlog": "^2.0.3",
     "path": "^0.11.14",
     "phantomjs-prebuilt": "^2.1.4",
     "postcss-loader": "^0.6.0",

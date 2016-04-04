@@ -40,16 +40,7 @@ module.exports = function(_path) {
             presets: ['es2015'],
             cacheDirectory: true,
           }
-        },
-        // {
-        //   test: /\.js?$/,
-        //   include: /app/,
-        //   exclude: /(node_modules|__tests__)/,
-        //   loader: 'babel-istanbul',
-        //   query: {
-        //     cacheDirectory: true,
-        //   },
-        // },
+        }
       ],
       loaders: [
         // es6 loader
@@ -87,8 +78,7 @@ module.exports = function(_path) {
       ],
     },
     plugins: [
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-      new webpack.optimize.CommonsChunkPlugin('vendors', '_vendors.js'),
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
     ]
   };
 };
