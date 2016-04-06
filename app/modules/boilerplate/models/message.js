@@ -8,7 +8,5 @@ var Backbone = require('backbone');
  * @type {[type]}
  */
 module.exports = Backbone.Model.extend({
-  defaults: {
-    message: 'Hello bud! ^^'
-  }
+  urlRoot: 'http://ip.jsontest.com'
 });

@@ -1,8 +1,9 @@
 'use strict';
 
 // Depends
+var $ = require('jquery');
 var Backbone = require('backbone');
-var Collection  = require('./collections/messages');
+var Model  = require('./models/message');
 
 // Apply styles for this module
 require('./stylesheets/index.styl');
@@ -11,16 +12,32 @@ require('./stylesheets/index.styl');
  * Backbone default View
  */
 module.exports = Backbone.View.extend({
-  className: 'example',
+  el: document.getElementById('body'),
   tagName: 'header',
+  className: 'example',
   template: require('./templates/hello.jade'),
-  collection: new Collection,
-  initialize: function($el) {
-    this.$el = $el;
+  events: {
+    'click #rambler-logo': 'load'
+  },
+  model: new Model,
+  initialize: function() {
+    this.model.on('change:ip', () => this.update(), this);
     this.render();
   },
 
   render: function() {
-    this.$el.prepend(this.template());
+    this.$el.append(this.template());
+  },
+
+  load: function(e) {
+    this.model.fetch();
+    e.preventDefault();
+  },
+
+  update: function() {
+    this.$el.append(
+      $('<div/>', { class: 'ip' })
+        .text(`YourIP: ${this.model.get('ip')}`)
+    );
   }
 });

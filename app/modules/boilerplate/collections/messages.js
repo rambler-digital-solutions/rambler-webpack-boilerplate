@@ -9,6 +9,6 @@ var Model    = require('../models/message');
  * @type {[type]}
  */
 module.exports = Backbone.Collection.extend({
-  url: '/app/data/example.json',
+  url: 'http://ip.jsontest.com',
   model: Model
 });

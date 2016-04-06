@@ -12,7 +12,7 @@ require('_stylesheets/app.styl');
 
 // Are you ready?
 $(function() {
-  new Boilerplate($('body'));
+  new Boilerplate();
   // big tnhx for this plugin
   $('#fullpage').fullpage();
 });
