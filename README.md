@@ -4,12 +4,12 @@
 Simple and lightweight Webpack boilerplate for hight speed developing and building your Simple applications or cool stuff
 
 ### Developments
-Just clone this repo and run next commands:
+Just clone this repo and follow few commands:
 
 ```bash
 # for developing
-npm i && npm run dev && npm run test:watch
-# open http://localhost:8080
+npm i && npm run dev
+# open http://localhost:8090
 ```
 
 ```bash
@@ -18,11 +18,14 @@ npm i && npm run build
 # see %YOURAPP%/dist
 ```
 
-
 ```bash
-# for testing system and code coverage follow
-npm i && npm run test:single
-# see %YOURAPP%/dist
+# for test driven development
+npm i && npm run test
 ```
 
-(c) Big thx for Opensource community for good opportunity to loving the web development
+```bash
+# for CI mode
+npm i && npm run test-ci
+```
+
+(c) Big thx for Opensource community
