@@ -3,9 +3,6 @@
 ## Webpack Rambler Boilerplate
 Simple and lightweight Webpack boilerplate for hight speed developing and building your Simple applications or cool stuff
 
-### Developments
-Just clone this repo and follow few commands:
-
 ### Requirements
 Big hugs for opensource for that:
 - [webpack](https://github.com/webpack/webpack)
@@ -14,6 +11,10 @@ Big hugs for opensource for that:
 - [mocha](https://github.com/mochajs/mocha)
 - [chai](https://github.com/chaijs/chai)
 - [phantomjs](https://github.com/ariya/phantomjs/)
+
+
+### Developments
+Just clone this repo and follow few commands:
 
 ```bash
 # for developing
