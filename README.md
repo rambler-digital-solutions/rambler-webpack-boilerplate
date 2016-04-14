@@ -6,6 +6,15 @@ Simple and lightweight Webpack boilerplate for hight speed developing and buildi
 ### Developments
 Just clone this repo and follow few commands:
 
+### Requirements
+Big hugs for opensource for that:
+- [webpack](https://github.com/webpack/webpack)
+- [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+- [testem](https://github.com/testem/testem)
+- [mocha](https://github.com/mochajs/mocha)
+- [chai](https://github.com/chaijs/chai)
+- [phantomjs](https://github.com/ariya/phantomjs/)
+
 ```bash
 # for developing
 npm i && npm run dev
