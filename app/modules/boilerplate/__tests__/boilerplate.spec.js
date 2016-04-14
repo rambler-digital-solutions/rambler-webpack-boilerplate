@@ -36,6 +36,6 @@ describe('App.modules.boilerplate', () => {
   });
 
   it('Instance should contain .ip element', () => {
-    expect(Instance.$el.find('.ip')).to.be.an('object');
+    expect(Instance.$el.find('.ip')).to.have.length(1);
   });
 });
