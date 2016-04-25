@@ -38,4 +38,7 @@ npm i && npm run test
 npm i && npm run test-ci
 ```
 
+### Slides for russian speakers
+[slideshare](http://goo.gl/WV5fPt) here
+
 (c) Big thx for Opensource community
