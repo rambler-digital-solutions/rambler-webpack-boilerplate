@@ -15,6 +15,18 @@ module.exports = function(_path) {
       info: true,
       hot: false,
       inline: true
+    },
+    module: {
+      preLoaders: [
+        {
+          test: /\.styl$/,
+          loader: 'stylint'
+        },
+        {
+          test: /\.js$/,
+          loader: 'eslint'
+        }
+      ]
     }
   };
 };
