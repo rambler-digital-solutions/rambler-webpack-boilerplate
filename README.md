@@ -1,17 +1,16 @@
 [![Build Status](https://travis-ci.org/rambler-digital-solutions/rambler-webpack-boilerplate.svg?branch=master)](https://travis-ci.org/rambler-digital-solutions/rambler-webpack-boilerplate)
 
 ## Webpack Rambler Boilerplate
-Simple and lightweight Webpack boilerplate for hight speed developing and building your Simple applications or cool stuff
+Simple and lightweight Webpack boilerplate for high speed developing and building your simple applications or cool stuff
 
 ### Requirements
-Big hugs for opensource for that:
+Big hugs to open-source for that:
 - [webpack](https://github.com/webpack/webpack)
 - [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
 - [testem](https://github.com/testem/testem)
 - [mocha](https://github.com/mochajs/mocha)
 - [chai](https://github.com/chaijs/chai)
 - [phantomjs](https://github.com/ariya/phantomjs/)
-
 
 ### Developments
 Just clone this repo and follow few commands:
@@ -41,4 +40,4 @@ npm i && npm run test-ci
 ### Slides for russian speakers
 [slideshare](http://goo.gl/WV5fPt) here
 
-(c) Big thx for Opensource community
+(c) Big thx to open-source community

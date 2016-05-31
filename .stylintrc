@@ -1,0 +1,27 @@
+{
+  "brackets": "never", // prefers .class over .class {
+  "colons": "never", // prefers margin 0 over margin: 0
+  "colors": false, // doesn't enforce variables when defining hex values
+  "commaSpace": "always", // prefers rgba(0, 0, 0, .1) over rgba(0,0,0,.1)
+  "commentSpace": "always", // prefers // comment over //comment
+  "cssLiteral": false, // doesn't check for @css blocks
+  "duplicates": false, // doesn't check for duplicates, works bad now
+  "efficient": "always", // prefers margin 0 over margin 0 0
+  "indentPref": 2, // prefers \s\smargin 0 over \s\s\smargin 0
+  "leadingZero": "never", // prefers rgba(0, 0, 0, .5) over rgba(0, 0, 0, 0.5)
+  "mixed": true, // prefers \s\smargin 0 over \tmargin 0
+  "none": "always", // prefers border none over border 0
+  "parenSpace": "never", // prefers mixin($param) over mixin( $param )
+  "placeholders": false, // doesn't check for placeholders
+  "prefixVarsWithDollar": false, // doesn't check for prefixing vars with dollar
+  "quotePref": "single", // prefers $var = 'something' over $var = "something"
+  "semicolons": "never", // prefers margin 0 over margin 0;
+  "sortOrder": false, // doesn't check for sort order of properties
+  "stackedProperties": "never", // prefers .class\n margin 0 over .class { margin 0 }
+  "trailingWhitespace": "never",
+  "valid": {
+    "expect": true, // margi 0 will throw an error
+    "error": true
+  },
+  "zeroUnits": "never" // prefers margin-right 0 over margin-right 0em
+}
