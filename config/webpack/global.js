@@ -57,6 +57,7 @@ module.exports = function(_path) {
           test: /\.js$/,
           query: {
             presets: ['es2015'],
+            ignore: ['node_modules', 'bower_components']
           },
         }
       ]
