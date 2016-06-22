@@ -20,24 +20,27 @@ module.exports = Backbone.View.extend({
     'click #rambler-logo': 'load'
   },
   model: new Model,
+  // initialize: function() {
+  //   this.model.on('change:ip', function () { this.update() } , this);
+  // }
   initialize: function() {
     this.model.on('change:ip', () => this.update(), this);
     this.render();
   },
 
-  render: function() {
-    this.$el.append(this.template());
-  },
+  // render: function() {
+  //   this.$el.append(this.template());
+  // },
 
-  load: function(e) {
-    this.model.fetch();
-    e.preventDefault();
-  },
+  // load: function(e) {
+  //   this.model.fetch();
+  //   e.preventDefault();
+  // },
 
-  update: function() {
-    this.$el.append(
-      $('<div/>', { class: 'ip' })
-        .text(`YourIP: ${this.model.get('ip')}`)
-    );
-  }
+  // update: function() {
+  //   this.$el.append(
+  //     $('<div/>', { class: 'ip' })
+  //       .text(`YourIP: ${this.model.get('ip')}`)
+  //   );
+  // }
 });
