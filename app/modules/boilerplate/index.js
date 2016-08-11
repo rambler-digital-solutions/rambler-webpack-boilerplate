@@ -15,7 +15,7 @@ module.exports = Backbone.View.extend({
   el: document.getElementById('body'),
   tagName: 'header',
   className: 'example',
-  template: require('./templates/hello.jade'),
+  template: require('./templates/hello.pug'),
   events: {
     'click #rambler-logo': 'load'
   },

@@ -35,7 +35,7 @@ module.exports = function(_path) {
           test: /.spec\.js$/,
           include: /app/,
           exclude: /(bower_components|node_modules)/,
-          loader: 'babel-loader',
+          loader: 'babel',
           query: {
             presets: ['es2015'],
             cacheDirectory: true,
@@ -46,7 +46,7 @@ module.exports = function(_path) {
         // es6 loader
         {
           include: path.join(_path, 'app'),
-          loader: 'babel-loader',
+          loader: 'babel',
           exclude: /(node_modules|__tests__)/,
           query: {
             presets: ['es2015'],
@@ -54,10 +54,10 @@ module.exports = function(_path) {
           }
         },
 
-        // jade templates
+        // pug templates
         {
-          test: /\.jade$/,
-          loader: 'jade-loader'
+          test: /\.pug$/,
+          loader: 'pug'
         },
 
         // stylus loader
