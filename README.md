@@ -40,4 +40,6 @@ npm i && npm run test-ci
 ### Slides for russian speakers
 [slideshare](http://goo.gl/WV5fPt) here
 
-(c) Big thx to open-source community
+## License
+
+[MIT](http://www.opensource.org/licenses/mit-license.php) © Rambler Digital Solutions
