@@ -17,7 +17,7 @@
  */
 
 // Depends
-var _ = require('lodash');
+var merge = require('webpack-merge');
 
 /**
  * Exported evnironments object
@@ -43,7 +43,7 @@ var _load = function() {
     ? process.env.NODE_ENV
     : 'production';
 
-  return _.merge(
+  return merge(
     _configs[ENV](__dirname),
     _configs.global(__dirname)
   );

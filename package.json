@@ -26,7 +26,6 @@
     "glob": "7.1.1",
     "html-webpack-plugin": "2.28.0",
     "json-loader": "0.5.4",
-    "lodash": "4.17.4",
     "manifest-revision-webpack-plugin": "0.3.0",
     "mocha": "3.0.2",
     "npmlog": "4.0.2",
@@ -44,7 +43,8 @@
     "testem": "1.10.3",
     "url-loader": "0.5.7",
     "webpack": "2.2.1",
-    "webpack-dev-server": "2.3.0"
+    "webpack-dev-server": "2.3.0",
+    "webpack-merge": "^2.6.1"
   },
   "babel": {
     "presets": [
