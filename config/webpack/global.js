@@ -35,8 +35,8 @@ module.exports = function(_path) {
 
     // resolves modules
     resolve: {
-      extensions: ['', '.js'],
-      modulesDirectories: ['node_modules'],
+      extensions: ['.js'],
+      modules: ['node_modules'],
       alias: {
         _svg: path.join(_path, 'app', 'assets', 'svg'),
         _fonts: path.join(_path, 'app', 'assets', 'fonts'),
@@ -49,31 +49,49 @@ module.exports = function(_path) {
 
     // modules resolvers
     module: {
-      loaders: [
-        { test: /\.pug$/, loader: 'pug' },
-        { test: /\.styl$/, loader: TextPlugin.extract('style', 'css!postcss!stylus') },
-        { test: /\.(css|ttf|eot|woff|woff2|png|ico|jpg|jpeg|gif|svg)$/i, loaders: ['file?context=' + rootAssetPath + '&name=assets/static/[ext]/[name].[hash].[ext]'] },
-        { loader: 'babel',
+      rules: [
+        {
+          test: /\.pug$/,
+          use: 'pug-loader'
+        },
+        {
+          test: /\.styl$/,
+          use: TextPlugin.extract(['css-loader', 'postcss-loader', 'stylus-loader'])
+        },
+        {
+          test: /\.(css|ttf|eot|woff|woff2|png|ico|jpg|jpeg|gif|svg)$/i,
+          use: ['file-loader?context=' + rootAssetPath + '&name=assets/static/[ext]/[name].[hash].[ext]']
+        },
+        {
           test: /\.js$/,
-          query: {
-            presets: ['es2015'],
-            ignore: ['node_modules', 'bower_components']
+          use: {
+            loader: 'babel-loader',
+            options: { presets: ['es2015'] }
           },
+          exclude: /(node_modules|bower_components)/
         }
       ]
     },
 
-    // post css
-    postcss: [autoprefixer({ browsers: ['last 5 versions'] })],
-
     // load plugins
     plugins: [
-      new webpack.optimize.CommonsChunkPlugin('vendors', 'assets/js/vendors.[hash].js'),
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendors',
+        filename: 'assets/js/vendors.[hash].js'
+      }),
       new TextPlugin('assets/css/[name].[chunkhash].css'),
+      new webpack.LoaderOptionsPlugin({
+        options: {
+          postcss: [
+            autoprefixer({ browsers: ['last 5 versions'] })
+          ]
+        }
+      }),
       new Manifest(path.join(_path + '/config', 'manifest.json'), {
         rootAssetPath: rootAssetPath,
         ignorePaths: ['.DS_Store']
       }),
+
       // create instance for entrypoint index.html building
       new HtmlPlugin({
         title: 'Rambler Webpack Dev Boilerplate',
