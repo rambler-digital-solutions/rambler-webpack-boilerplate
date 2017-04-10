@@ -1,11 +1,11 @@
 'use strict';
 
 // Depends
-var path = require('path');
+const path = require('path');
 var webpack = require('webpack');
 
 module.exports = function(_path) {
-  var rootAssetPath = './app/assets';
+  const rootAssetPath = './app/assets';
   return {
     cache: true,
     devtool: 'inline-source-map',

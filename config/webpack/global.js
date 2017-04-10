@@ -1,12 +1,12 @@
 'use strict';
 
 // Depends
-var path         = require('path');
-var webpack      = require('webpack');
-var Manifest     = require('manifest-revision-webpack-plugin');
-var TextPlugin   = require('extract-text-webpack-plugin');
-var autoprefixer = require('autoprefixer');
-var HtmlPlugin   = require('html-webpack-plugin');
+const path         = require('path');
+const webpack      = require('webpack');
+const Manifest     = require('manifest-revision-webpack-plugin');
+const TextPlugin   = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const HtmlPlugin   = require('html-webpack-plugin');
 
 /**
  * Global webpack config
@@ -15,15 +15,21 @@ var HtmlPlugin   = require('html-webpack-plugin');
  */
 module.exports = function(_path) {
   // define local variables
-  var dependencies  = Object.keys(require(_path + '/package').dependencies);
-  var rootAssetPath = _path + 'app';
+  const npmPackages = require(_path + '/package');
+  const dependencies  = (npmPackages.dependencies) ? Object.keys(npmPackages.dependencies) : false;
+  const rootAssetPath = _path + 'app';
+
+  // define entry points
+  const entryPoints = {
+    application: _path + '/app/app.js'
+  };
+  // check vendors
+  if (dependencies) entryPoints.vendors = dependencies;
+
   // return objecy
   return {
     // entry points
-    entry: {
-      application: _path + '/app/app.js',
-      vendors: dependencies
-    },
+    entry: entryPoints,
 
     // output system
     output: {
