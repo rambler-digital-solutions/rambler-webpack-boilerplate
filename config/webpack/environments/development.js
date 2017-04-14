@@ -8,23 +8,23 @@
 module.exports = function(_path) {
   return {
     context: _path,
-    debug: true,
     devtool: 'eval',
     devServer: {
       contentBase: './dist',
-      info: true,
       hot: false,
       inline: true
     },
     module: {
-      preLoaders: [
+      rules: [
         {
           test: /\.styl$/,
-          loader: 'stylint'
+          enforce: 'pre',
+          use: 'stylint-loader'
         },
         {
           test: /\.js$/,
-          loader: 'eslint'
+          enforce: 'pre',
+          use: 'eslint-loader'
         }
       ]
     }
