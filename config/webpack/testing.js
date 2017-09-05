@@ -2,13 +2,13 @@
 
 // Depends
 const path = require('path');
-var webpack = require('webpack');
+const webpack = require('webpack');
 
 module.exports = function(_path) {
-  const rootAssetPath = './app/assets';
   return {
     cache: true,
     devtool: 'inline-source-map',
+    entry: {},
     output: {
       path: path.join(_path, 'testing'),
       filename: '[name].js',
@@ -18,8 +18,8 @@ module.exports = function(_path) {
 
     // resolves modules
     resolve: {
-      extensions: ['', '.js', '.jsx'],
-      modulesDirectories: ['node_modules'],
+      extensions: ['.js', '.jsx'],
+      modules: ['node_modules'],
       alias: {
         _svg: path.join(_path, 'app', 'assets', 'svg'),
         _fonts: path.join(_path, 'app', 'assets', 'fonts'),
@@ -29,56 +29,74 @@ module.exports = function(_path) {
         _templates: path.join(_path, 'app', 'assets', 'templates')
       }
     },
+
     module: {
-      preLoaders: [
+      rules: [
         {
+          enforce: 'pre',
           test: /.spec\.js$/,
-          include: /app/,
-          exclude: /(bower_components|node_modules)/,
-          loader: 'babel',
-          query: {
-            presets: ['es2015'],
-            cacheDirectory: true,
-          }
-        }
-      ],
-      loaders: [
-        // es6 loader
-        {
           include: path.join(_path, 'app'),
-          loader: 'babel',
-          exclude: /(node_modules|__tests__)/,
-          query: {
-            presets: ['es2015'],
-            cacheDirectory: true,
+          exclude: /(bower_components|node_modules)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015'],
+              cacheDirectory: true
+            }
           }
         },
-
+        // es6 loader
+        {
+          test: /\.js$/,
+          include: path.join(_path, 'app'),
+          exclude: /(node_modules|__tests__)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015'],
+              cacheDirectory: true
+            }
+          }
+        },
         // pug templates
         {
           test: /\.pug$/,
-          loader: 'pug'
+          use: {
+            loader: 'pug-loader',
+            options: {
+              pretty: true
+            }
+          }
         },
-
-        // stylus loader
+        // styles loader
         {
           test: /\.styl$/,
-          loader: 'style!css!stylus'
+          use: [
+            'style-loader',
+            'css-loader',
+            'stylus-loader']
         },
-
         // external files loader
         {
-          test: /\.(png|ico|jpg|jpeg|gif|svg|ttf|eot|woff|woff2)$/i,
-          loader: 'file',
-          query: {
-            context: rootAssetPath,
-            name: '[path][hash].[name].[ext]'
+          test: /\.(png|ico|jpg|jpeg|gif|svg|ttf|eot|woff|woff2|swf|st)$/i,
+          use: {
+            loader: 'file-loader',
+            options: {
+              context: path.join(_path, 'app', 'assets'),
+              name: '[path][hash].[name].[ext]'
+            }
           }
         }
-      ],
+      ]
     },
+
     plugins: [
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendors',
+        filename: '[name].js',
+        children: true,
+        minChunks: module => /node_modules/.test(module.resource) && !/.css/.test(module.resource)
+      })
     ]
   };
 };

@@ -1,10 +1,10 @@
 'use strict';
 
 // Depends
-var log = require('npmlog');
-var App = require('testem/lib/app');
-var Config = require('testem/lib/config');
-var EventEmitter = require('events').EventEmitter;
+const log = require('npmlog');
+const App = require('testem/lib/app');
+const Config = require('testem/lib/config');
+const EventEmitter = require('events').EventEmitter;
 
 /**
  * Testem API
@@ -18,7 +18,7 @@ function Testem() {}
  * @return {[type]}           [description]
  */
 Testem.prototype.start = function(options, finalizer) {
-  var fakeStream = new EventEmitter();
+  const fakeStream = new EventEmitter();
   fakeStream.write = function() {};
   log.stream = fakeStream;
 

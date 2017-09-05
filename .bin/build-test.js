@@ -1,23 +1,22 @@
 'use strict';
 
 // Depends
-var port = 8081;
-var host = 'localhost';
-var glob = require('glob');
-var path = require('path');
-var webpack = require('webpack');
-var Testem = require('./testem');
-var WebpackDevServer = require('webpack-dev-server');
-var pkg = require('../package.json');
-var config = require('../config/webpack/testing')(path.join(__dirname, '..'));
-var dependencies  = Object.keys(pkg.dependencies);
+const port = 8081;
+const host = 'localhost';
+const glob = require('glob');
+const path = require('path');
+const webpack = require('webpack');
+const Testem = require('./testem');
+const WebpackDevServer = require('webpack-dev-server');
+const pkg = require('../package.json');
+const config = require('../config/webpack/testing')(path.join(__dirname, '..'));
 
 /**
  * Create webpack instance
  * @param  {object} endConfig Endpoint config
  * @return webpack
  */
-var createCompiller = function(endConfig) {
+const createCompiller = function(endConfig) {
   // create webpack compiller
   return webpack(endConfig, function() {});
 };
@@ -27,8 +26,8 @@ var createCompiller = function(endConfig) {
  * @param  {[type]} options [description]
  * @return {[type]}         [description]
  */
-var startTestem = function(stat) {
-  var options = {
+const startTestem = function(stat) {
+  const options = {
     framework: 'mocha',
     launch_in_dev: [
       'phantomjs'
@@ -38,7 +37,7 @@ var startTestem = function(stat) {
     })
   };
 
-  var Instance = new Testem;
+  const Instance = new Testem;
   Instance.start(options, function() {
     console.log('╭∩╮（︶︿︶）╭∩╮: Ctrl + C -> For EXIT');
   });
@@ -50,9 +49,9 @@ var startTestem = function(stat) {
  * Webpack dev-server start
  * @return {[type]} [description]
  */
-var startServer = function(endConfig) {
-  var testemInstance = false;
-  var compiler = webpack(endConfig);
+const startServer = function(endConfig) {
+  const compiler = webpack(endConfig);
+  let testemInstance = false;
 
   compiler.plugin('done', stat => {
     !testemInstance && typeof testemInstance === 'boolean'
@@ -65,23 +64,11 @@ var startServer = function(endConfig) {
   }).listen(port, host);
 };
 
-glob('app/**/__tests__/*.spec.js', function(err, files) {
-  Object.keys(pkg.devDependencies).indexOf('chai') > 0
-    ? dependencies.push('chai')
-    : null;
-
-  // add dependencies to vendors chunk
-  config.entry = {
-    a: dependencies,
-  };
-
+glob('app/**/__tests__/*.spec.js', (err, files) => {
   // all spec's file gone to one of entry point
-  files.forEach(function(file) {
+  files.forEach(file => {
     config.entry[path.basename(file, '.js')] = path.join(__dirname, '..', file);
   });
-
-  // vendors
-  config.plugins.push(new webpack.optimize.CommonsChunkPlugin('a', 'a.js'));
 
   // check NODE_ENV
   process && process.env && process.env.NODE_ENV === 'tdd'

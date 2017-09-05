@@ -100,7 +100,6 @@ module.exports = function(_path) {
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendors',
         filename: path.join('assets', 'js', '[name].[hash].js'),
-        chunks: ['application'],
         minChunks: module => /node_modules/.test(module.resource) && !/.css/.test(module.resource)
       }),
 
