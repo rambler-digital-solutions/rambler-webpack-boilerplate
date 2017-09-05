@@ -2,10 +2,11 @@
 'use strict';
 
 // Depends
-var $ = require('jquery');
+const $ = require('jquery');
+require('fullpage.js');
 
 // Modules
-var Boilerplate = require('_modules/boilerplate');
+const Boilerplate = require('_modules/boilerplate');
 
 // Stylesheet entrypoint
 require('_stylesheets/app.styl');

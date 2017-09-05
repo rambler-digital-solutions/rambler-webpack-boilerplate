@@ -3,7 +3,7 @@
 // Depends
 const path         = require('path');
 const webpack      = require('webpack');
-const Manifest     = require('manifest-revision-webpack-plugin');
+const AssetsPlugin = require('assets-webpack-plugin');
 const TextPlugin   = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const HtmlPlugin   = require('html-webpack-plugin');
@@ -14,22 +14,14 @@ const HtmlPlugin   = require('html-webpack-plugin');
  * @return {[type]}       [description]
  */
 module.exports = function(_path) {
-  // define local variables
-  const npmPackages = require(_path + '/package');
-  const dependencies  = (npmPackages.dependencies) ? Object.keys(npmPackages.dependencies) : false;
-  const rootAssetPath = _path + 'app';
-
-  // define entry points
-  const entryPoints = {
-    application: _path + '/app/app.js'
-  };
-  // check vendors
-  if (dependencies) entryPoints.vendors = dependencies;
+  const rootAssetPath = path.join(_path, 'app');
 
   // return objecy
   return {
     // entry points
-    entry: entryPoints,
+    entry: {
+      application: path.join(_path, 'app', 'app.js')
+    },
 
     // output system
     output: {
@@ -41,7 +33,6 @@ module.exports = function(_path) {
 
     // resolves modules
     resolve: {
-      extensions: ['.js'],
       modules: ['node_modules'],
       alias: {
         _svg: path.join(_path, 'app', 'assets', 'svg'),
@@ -62,11 +53,36 @@ module.exports = function(_path) {
         },
         {
           test: /\.styl$/,
-          use: TextPlugin.extract(['css-loader', 'postcss-loader', 'stylus-loader'])
+          use: TextPlugin.extract([
+            {
+              loader: 'css-loader',
+              options: { sourceMap: true }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                context: rootAssetPath,
+                sourceMap: true,
+                plugins: loader => [
+                  autoprefixer({
+                    remove: false,
+                    browsers: ['last 5 versions']
+                  })
+                ]
+              }
+            },
+            'stylus-loader'
+          ])
         },
         {
           test: /\.(css|ttf|eot|woff|woff2|png|ico|jpg|jpeg|gif|svg)$/i,
-          use: ['file-loader?context=' + rootAssetPath + '&name=assets/static/[ext]/[name].[hash].[ext]']
+          use: {
+            loader: 'file-loader',
+            options: {
+              context: rootAssetPath,
+              name: path.join('assets','static', '[ext]', '[name].[hash].[ext]')
+            }
+          }
         },
         {
           test: /\.js$/,
@@ -83,19 +99,17 @@ module.exports = function(_path) {
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendors',
-        filename: 'assets/js/vendors.[hash].js'
+        filename: path.join('assets', 'js', '[name].[hash].js'),
+        chunks: ['application'],
+        minChunks: module => /node_modules/.test(module.resource) && !/.css/.test(module.resource)
       }),
+
       new TextPlugin('assets/css/[name].[chunkhash].css'),
-      new webpack.LoaderOptionsPlugin({
-        options: {
-          postcss: [
-            autoprefixer({ browsers: ['last 5 versions'] })
-          ]
-        }
-      }),
-      new Manifest(path.join(_path + '/config', 'manifest.json'), {
-        rootAssetPath: rootAssetPath,
-        ignorePaths: ['.DS_Store']
+
+      new AssetsPlugin({
+        path: path.join(_path, 'config'),
+        filename: 'manifest.json',
+        prettyPrint: true
       }),
 
       // create instance for entrypoint index.html building

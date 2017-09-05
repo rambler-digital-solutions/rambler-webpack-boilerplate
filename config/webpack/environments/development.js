@@ -8,7 +8,7 @@
 module.exports = function(_path) {
   return {
     context: _path,
-    devtool: 'eval',
+    devtool: 'inline-source-map',
     devServer: {
       contentBase: './dist',
       hot: false,
@@ -22,9 +22,10 @@ module.exports = function(_path) {
           use: 'stylint-loader'
         },
         {
-          test: /\.js$/,
           enforce: 'pre',
-          use: 'eslint-loader'
+          test: /\.js$/,
+          use: 'eslint-loader',
+          exclude: /node_modules/
         }
       ]
     }
